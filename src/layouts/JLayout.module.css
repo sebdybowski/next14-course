@@ -1,0 +1,20 @@
+.jlogo {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.sponsor {
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.sponsor:first-child {
+  margin-top: 0.5rem;
+}
