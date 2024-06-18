@@ -88,7 +88,7 @@ const config: Config = {
             },
             {
               label: 'Github',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://github.com/sebdybowski',
             },
           ],
         },
