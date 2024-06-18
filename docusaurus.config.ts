@@ -3,9 +3,9 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  title: 'Next.js 14',
+  tagline: 'Features & Performance',
+  favicon: 'img/next.svg',
 
   // Set the production url of your site here
   url: 'https://your-docusaurus-site.example.com',
@@ -51,67 +51,62 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/devoxx-logo.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Next.js 14: Features & Performance',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Next.js Logo',
+        src: 'img/next.svg',
       },
-      items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
-        },
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
-      ],
+      items: [],
     },
     footer: {
-      style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'My other talks',
           items: [
             {
-              label: 'Tutorial',
-              to: '/',
+              label: 'Astro',
+              to: 'https://astro.dybowski.pro/',
+            },
+            {
+              label: 'AWS Amplify',
+              to: 'https://aws.dybowski.pro/',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Find',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/sebdybowski/',
             },
             {
-              label: 'Discord',
+              label: 'Twitter (X)',
+              href: 'https://x.com/sebdybowskidev',
+            },
+            {
+              label: 'Github',
               href: 'https://discordapp.com/invite/docusaurus',
             },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
           ],
         },
         {
-          title: 'More',
+          title: 'Sponsors',
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'J-Labs Software Specialists',
+              href: 'https://www.j-labs.pl/en/',
+            },
+            {
+              label: 'Devoxx Poland',
+              href: 'https://devoxx.pl/',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `${new Date().getFullYear()} Sebastian Dybowski. Built with Docusaurus.`,
     },
     docs: {
       sidebar: {
