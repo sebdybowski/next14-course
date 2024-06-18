@@ -76,7 +76,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'Find',
+          title: 'Find me',
           items: [
             {
               label: 'LinkedIn',
