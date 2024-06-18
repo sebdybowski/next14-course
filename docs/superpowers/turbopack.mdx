@@ -4,5 +4,53 @@ sidebar_position: 1
 import JLayout from '/src/layouts/JLayout';
 
 # Turbopack (beta)
+## Project initialization
+```bash
+npx create-next-app@latest ./next-features
+```
+
+```bash
+❯ npx create-next-app@latest ./next-features
+✔ Would you like to use TypeScript? … No / Yes
+✔ Would you like to use ESLint? … No / Yes
+✔ Would you like to use Tailwind CSS? … No / Yes
+✔ Would you like to use `src/` directory? … No / Yes
+✔ Would you like to use App Router? (recommended) … No / Yes
+✔ Would you like to customize the default import alias (@/*)? … No / Yes
+Creating a new Next.js app in /home/seb/Dev/next14-course/examples/next-features.
+```
+
+## Build modes
+### Traditional mode
+In this mode the project is being build by **webpack**.
+```json
+"scripts": {
+  "dev": "next dev",
+  ...
+},
+```
+
+### Turbo mode
+In this mode the project is being build by new in-house vercel solution: **Turbopack** - a bundler written in **Rust**.
+```json
+"scripts": {
+  "dev": "next dev --turbo",
+  ...
+},
+```
+
+### Results
+- **Traditional mode** - ```✓ Ready in 1483ms.```
+- **Turbo mode** - ```✓ Ready in 1212ms.``` - 20% faster
+
+What is more important also **hot-reloading** is faster.
+
+
+:::danger Turbopack is Dev mode only
+
+Due to a fact that Turbopack is not supporting advanced configuration options 
+like webpack does it is possible to use it only in development mode.
+
+:::
 
 <JLayout/>
