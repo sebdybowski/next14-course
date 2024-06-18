@@ -80,7 +80,7 @@ const config: Config = {
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/intro',
+              to: '/',
             },
           ],
         },
@@ -112,6 +112,11 @@ const config: Config = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
     },
     prism: {
       theme: prismThemes.github,

@@ -1,9 +1,5 @@
 import styles from './JLayout.module.css';
 
-interface Props {
-  children: React.ReactNode;
-}
-
 const JLogo = () => {
   return <div className={styles.jlogo}>
     <img className={styles.sponsor} src="/img/devoxx-logo.png" alt="Devoxx logo" width={128}/>
@@ -11,12 +7,9 @@ const JLogo = () => {
   </div>;
 }
 
-const JLayout = ({ children }: Props) => {
+const JLayout = () => {
   return (
-    <div>
-      {children}
-      <JLogo />
-    </div>
+    <JLogo />
   );
 };
 
