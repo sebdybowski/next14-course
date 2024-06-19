@@ -14,5 +14,14 @@ Source: ([FocusReactive](https://focusreactive.com/breaking-down-next-js-14/))�
 ensure better handling of images, contributing to faster load times 
 and improved performance for web applications​. Source: 
 ([Pagepro](https://pagepro.co/blog/whats-next-14/))​.
-- ****: //TO:DO
+- **Revalidation patterns**: Revalidation is the process of purging 
+the Data Cache and re-fetching the latest data. This is useful when your 
+data changes and you want to ensure you show the latest information.
+  - `revalidateTag(tag: string): void;` allows you to purge cached data on-demand 
+  for a specific cache tag.
+  - `revalidatePath(path: string, type?: 'page' | 'layout'): void;` 
+  allows you to purge cached data on-demand for a specific path.
+  - `fetch('https://...', { next: { revalidate: 3600 } })`: 
+  revalidate fetched data at interval measured in seconds.
+
 <JLayout/>
