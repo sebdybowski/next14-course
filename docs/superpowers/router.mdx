@@ -4,6 +4,36 @@ sidebar_position: 3
 import JLayout from '/src/layouts/JLayout';
 
 # App Router
+Next.js recently introduced a new feature called **App Router**.
+It is a new way to define routes in your Next.js application.
+But a good example is better than a thousand words! 🚀
 
-## Requirements
+## Basic route
+- `app/about/page.jsx`
+```jsx
+export default function AboutPage() {
+  return <h1 className="text-3xl">About page</h1>;
+}
+```
+
+## Route with parameters
+- `app/blog/[id]/page.jsx`
+```jsx
+export default function BlogPage({params}) {
+  return <h1 className="text-3xl">Blog page {params.id}</h1>;
+}
+```
+
+## Route with layout
+- `app/blog/layout.jsx`
+```jsx
+export default function BlogLayout({children}) {
+  return <div className="bg-red-100">{children}</div>;
+}
+```
+
+:::tip Invisible groups
+If you want to group routes without creating a new page you can use invisible groups.
+Simply, you just need to create a new folder with parentheses (). Example: `(other)`.
+:::
 <JLayout/>
