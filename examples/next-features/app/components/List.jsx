@@ -4,7 +4,7 @@ import { useOptimistic, useState } from 'react';
 const wait = (value, time) =>
   new Promise((resolve) => setTimeout(() => resolve(value), time));
 
-export const List = () => {
+const List = () => {
   const [items, setItems] = useState([]);
   const [optimisticItems, setOptimisticItems] = useOptimistic(items);
   
@@ -36,3 +36,4 @@ export const List = () => {
     </>
   );
 }
+export default List;

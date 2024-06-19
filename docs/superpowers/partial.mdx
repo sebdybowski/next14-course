@@ -1,3 +1,25 @@
+---
+sidebar_position: 7
+---
+import JLayout from '/src/layouts/JLayout';
+
+# Partial prerendering (experimental)
+- `pnpm i next@rc react@rc react-dom@rc`
+- `next.config.mjs`
+```js
+/** @type {import('next').NextConfig} */
+ 
+const nextConfig = {
+  experimental: {
+    ppr: 'incremental',
+  },
+};
+ 
+module.exports = nextConfig;
+```
+
+- `./app/page.js`
+```jsx
 import React, { Suspense } from 'react';
 
 const DynamicComponent = React.lazy(() =>
@@ -19,3 +41,6 @@ export default function Home() {
     </main>
   );
 }
+```
+
+<JLayout/>
