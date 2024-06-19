@@ -1,5 +1,11 @@
 import React, { Suspense } from 'react';
 
+export const metadata = {
+  title: 'Home',
+  desription: 'The home page.',
+  keywords: ['home', 'page'],
+};
+
 const DynamicComponent = React.lazy(() =>
   new Promise((resolve) => {
     setTimeout(() => {

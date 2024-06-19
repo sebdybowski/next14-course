@@ -3,7 +3,41 @@ sidebar_position: 2
 ---
 import JLayout from '/src/layouts/JLayout';
 
-# MDX
+# MDX Metadata Management
+## Config-based Metadata
+- `./app/page.js`
+```jsx
+export const metadata = {
+  title: 'Home',
+  desription: 'The home page.',
+  keywords: ['home', 'page'],
+};
+```
 
-## Requirements
+## Dynamic Metadata
+- `./app/meta/page.js`
+```jsx
+export async function generateMetadata({ searchParams }) {
+  return {
+    title: `Metadata - ${searchParams?.id}`,
+    description: 'The metadata page.',
+    keywords: ['metadata', 'page'],
+  };
+}
+
+const MetadataPage = () => {
+  return (
+    <div>
+      <h1>Metadata</h1>
+      <p>Metadata page</p>
+    </div>
+  );
+}
+
+export default MetadataPage;
+```
+
+:::tip
+You can also use metadata feature to define OpenGraph and Twitter cards.
+:::info
 <JLayout/>
