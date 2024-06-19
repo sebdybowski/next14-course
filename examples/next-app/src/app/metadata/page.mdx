@@ -1,0 +1,18 @@
+export async function generateMetadata({ searchParams }) {
+  return {
+    title: `Metadata Page - ${searchParams?.id}`,
+    description: 'The metadata page.',
+    keywords: ['metadata', 'page'],
+  };
+}
+
+{/* prose class for tailwind styling on MDX */}
+<article class="prose lg:prose-xl">
+# Metadata
+Metadata page
+
+- Renders nicely
+- Using Markdown
+- HTML Tags & components
+
+</article>

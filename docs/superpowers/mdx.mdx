@@ -3,14 +3,92 @@ sidebar_position: 2
 ---
 import JLayout from '/src/layouts/JLayout';
 
-# MDX Metadata Management
+# MDX / Metadata Management
+:::danger Turbopack turn off
+Unfortunately Turbopack is not supporting MDX integration.
+We need to wait until production-ready version will be released.
+- `package.json`
+```json
+"scripts": {
+  "dev": "next dev",
+  ...
+},
+```
+:::
+
+## Adding MDX integration
+### Installation
+```bash
+pnpm install @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
+```
+
+### Configuration
+- `next.config.js`
+```js
+import createMDX from '@next/mdx';
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+};
+
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);
+```
+
+- `src/mdx-components.tsx`
+```tsx
+import type { MDXComponents } from 'mdx/types'
+ 
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    ...components,
+  }
+}
+```
+
+### Tailwind MDX styles
+```bash
+pnpm install -D @tailwindcss/typography
+```
+
+```js
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    // ...
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+    // ...
+  ],
+}
+```
+
+## First MDX page
+- `src/app/metadata/page.mdx`
+```mdx
+{/* prose class for tailwind styling on MDX */}
+<article class="prose lg:prose-xl">
+# Metadata
+Metadata page
+
+- Renders nicely
+- Using Markdown
+- HTML Tags & components
+
+</article>
+```
+
 ## Config-based Metadata
-- `./app/page.js`
+- `src/app/metadata/page.mdx`
 ```jsx
 export const metadata = {
-  title: 'Home',
-  desription: 'The home page.',
-  keywords: ['home', 'page'],
+  title: 'Metadata Page',
+  desription: 'MDX page.',
+  keywords: ['mdx', 'page'],
 };
 ```
 
@@ -19,23 +97,13 @@ export const metadata = {
 ```jsx
 export async function generateMetadata({ searchParams }) {
   return {
-    title: `Metadata - ${searchParams?.id}`,
+    title: `Metadata Page - ${searchParams?.id}`,
     description: 'The metadata page.',
     keywords: ['metadata', 'page'],
   };
 }
-
-const MetadataPage = () => {
-  return (
-    <div>
-      <h1>Metadata</h1>
-      <p>Metadata page</p>
-    </div>
-  );
-}
-
-export default MetadataPage;
 ```
+- `localhost:3000/metadata?id=123`
 
 :::tip
 You can also use metadata feature to define OpenGraph and Twitter cards.
