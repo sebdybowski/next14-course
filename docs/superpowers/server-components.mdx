@@ -4,6 +4,86 @@ sidebar_position: 4
 import JLayout from '/src/layouts/JLayout';
 
 # Server Components
+Thanks to cooperation of Vercel and React team, we can use **Server Components** in Next.js.
+But what are they?
 
-## Async components
+## What are Server Components?
+- **By default** all components in Next.js 14 are treated as **Server Components**.
+- If we want to **opt-out** from this behavior we need to use `"use client"` in the beginning of the file.
+- Server Components are rendered on the server and then sent to the client.
+- This means that operations like **data fetching** or **database queries** are done on the server side.
+- After the component is rendered on the server, it is sent to the client as a **static HTML**.
+
+## Implementation
+- `src/app/api/fetchData.js`
+```js
+// We're simulating fetching data from an API
+import { NextResponse } from "next/server";
+
+export async function fetchData() {
+  return NextResponse.json([
+    { id: 1, name: "Item 1" },
+    { id: 2, name: "Item 2" },
+    { id: 3, name: "Item 3" },
+  ]);
+}
+```
+- `src/components/ServerComponentWithData.jsx`
+```jsx
+import { fetchData } from "../app/api/fetchData";
+
+export default async function ServerComponentWithData() {
+  const response = await fetchData();
+  const data = await response.json();
+
+  return (
+    <div>
+      <h1 className="text-3xl">ServerComponentWithData</h1>
+      {(data || []).map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+}
+```
+- `src/app/page.js`
+```jsx
+import ServerComponentWithData from "../components/ServerComponentWithData";
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <ServerComponentWithData />
+    </main>
+  );
+}
+```
+
+## Results
+No XHR requests are made on the client side. 
+All data is fetched on the server and sent to the client as a static HTML.
+
+<img src="/img/no-xhr.png"/>
+
+:::tip
+You can even access Database with Server Components! 🚀
+```jsx
+import { PrismaClient } from "@prisma/client";
+
+export default async function ServerComponentWithDatabase() {
+  const prisma = new PrismaClient();
+  const data = await prisma.user.findMany();
+
+  return (
+    <div>
+      <h1 className="text-3xl">ServerComponentWithDatabase</h1>
+      {(data || []).map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+}
+```
+:::
+
 <JLayout/>
