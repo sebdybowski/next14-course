@@ -86,4 +86,47 @@ export default async function ServerComponentWithDatabase() {
 ```
 :::
 
+## Interactivity
+If you try to implement interactive hook like `useState` in Server Components, you will get an error.
+```jsx
+import { fetchData } from "../app/api/fetchData";
+import React, {useState} from 'react';
+
+export default async function ServerComponentWithData() {
+  const [count, setCount] = useState(0);
+  const response = await fetchData();
+  const data = await response.json();
+
+  return (
+    <div>
+      <h1 className="text-3xl">ServerComponentWithData</h1>
+      {(data || []).map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <div>Count: {count}</div>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    </div>
+  );
+}
+```
+
+```bash
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./src/components/ServerComponentWithData.jsx
+Error: 
+  × You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
+  │ Learn more: https://nextjs.org/docs/getting-started/react-essentials
+  │ 
+  │ 
+   ╭─[/home/seb/Dev/next14-course/examples/next-app/src/components/ServerComponentWithData.jsx:1:1]
+ 1 │ import { fetchData } from "../app/api/fetchData";
+ 2 │ import React, {useState} from 'react';
+   ·                ────────
+ 3 │ 
+ 4 │ export default async function ServerComponentWithData() {
+ 5 │   const [count, setCount] = useState(0);
+   ╰────
+```
+
 <JLayout/>
