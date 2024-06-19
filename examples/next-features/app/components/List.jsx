@@ -1,14 +1,3 @@
----
-sidebar_position: 6
----
-import JLayout from '/src/layouts/JLayout';
-
-# Optimistic updates
-The entire trick: UI is assuming the server will respond with a success, and updates the UI accordingly.
-This feature is a part of **React**. However Next 14 introduces this feature as production ready.
-
-## Implementation
-```jsx
 'use client'
 import { useOptimistic, useState } from 'react';
 
@@ -47,12 +36,3 @@ export const List = () => {
     </>
   );
 }
-```
-
-## Request Queuing
-If the user will hit "Add" button multiple times before API responds, we are still safe 
-as the requests are going to be queued and executed in correct order. 
-
-![Request Queuing](/img/request-queuing.png)
-
-<JLayout/>
