@@ -1,28 +1,3 @@
----
-sidebar_position: 6
----
-import JLayout from '/src/layouts/JLayout';
-
-# Optimistic updates
-The entire trick: UI is assuming the server will respond with a success, and updates the UI accordingly.
-This feature is a part of **React**. Next 14 introduces this feature as production ready.
-
-## Implementation
- - `src/app/optimistic/page.jsx`
-```jsx
-import OptimisticList from "../../components/OptimisticList";
-
-export default function Optimistic() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <OptimisticList />
-    </main>
-  );
-}
-```
-
- - `src/components/List.jsx`
-```jsx
 'use client'
 import { useOptimistic, useState } from 'react';
 
@@ -61,14 +36,3 @@ export default function OptimisticList() {
     </>
   );
 }
-```
-
-## Request Queuing
-:::tip
-If the user will hit "Add" button multiple times before API responds, we are still safe 
-as the requests are going to be queued and executed in correct order. 
-:::
-
-![Request Queuing](/img/request-queuing.png)
-
-<JLayout/>

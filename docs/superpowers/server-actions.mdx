@@ -4,5 +4,74 @@ sidebar_position: 5
 import JLayout from '/src/layouts/JLayout';
 
 # Server Actions
+Server Actions are a new feature in Next.js 14 that allows you to run server-side code 
+in response to a client-side event. In our example we will try to maintain form 
+changes.
+
+:::note
+We will go through this example without implementation, as the DB part is not yet ready.
+:::
+
+## Implementation
+- `src/app/action/page.jsx`
+```js
+import ServerActionForm from "../../components/ServerActionForm";
+
+export default function Action() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <ServerActionForm />
+    </main>
+  );
+}
+```
+
+- `src/app/api/saveData.js`
+```js
+// We're simulating saving data to an API
+import { NextResponse } from "next/server";
+
+export async function saveData(data) {
+  return NextResponse.json(data);
+}
+```
+
+- `src/components/ServerActionForm.jsx`
+```jsx
+import { saveData } from "../api/saveData";
+import { revalidatePath } from "next/cache";
+
+export default function ServerActionForm() {
+  const dbData = kv.get("data") || {};
+
+  async function submitForm(data) {
+    // Next.js will automaticly create a Server side endpoint
+    // It is possible to use headers and coockies if needed
+    "use server";
+
+    const response = await saveData(data);
+    const savedData = await response.json();
+
+    kv.set("data", savedData);
+
+    revalidatePath("/action");
+  }
+
+  return (
+    <form action={submitForm}>
+      <label>
+        Name:
+        <input type="text" name="name" defaultValue={data.name} />
+      </label>
+      <button type="submit">Save</button>
+    </form>
+  );
+}
+```
+
+## Benefits
+- 👍 No useState needed.
+- 👍 No useEffect needed.
+- 👍 UI is updated according to API response.
 
 <JLayout/>
