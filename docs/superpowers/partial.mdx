@@ -7,25 +7,30 @@ import JLayout from '/src/layouts/JLayout';
 - `pnpm i next@rc react@rc react-dom@rc`
 - `next.config.mjs`
 ```js
+import createMDX from '@next/mdx';
+
 /** @type {import('next').NextConfig} */
- 
 const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   experimental: {
     ppr: 'incremental',
   },
 };
- 
-module.exports = nextConfig;
+
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);
+
 ```
 
-- `./app/page.js`
+- `./app/partial/page.jsx`
 ```jsx
 import React, { Suspense } from 'react';
 
 const DynamicComponent = React.lazy(() =>
   new Promise((resolve) => {
     setTimeout(() => {
-      resolve(import('./components/List'));
+      resolve(import('../../components/OptimisticList.jsx'));
     }, 2000);
   }));
 
